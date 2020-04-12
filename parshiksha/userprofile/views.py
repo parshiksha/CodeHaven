@@ -8,5 +8,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    # return HttpResponse("This is user profile. fetched data from DB")
-    return render(request, "profile.html", {})
+    return HttpResponse("This is user profile. fetched data from DB")
+    # return render(request, "profile.html", {})
