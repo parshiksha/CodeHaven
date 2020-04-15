@@ -12,7 +12,19 @@ def index(request):
 
 
 def login(request):
-    return HttpResponse("Login form")
+    if(request.method == 'POST'):
+        email1 = request.POST['email']
+        password = request.POST['password']
+        print(email1 + password)
+        results = users.objects.filter(email=email1)
+        # print(results[0].name)
+
+        if(check_password(password, results[0].passoword)):
+            return redirect('/profile')
+        else:
+            print("password not correct")
+    else:
+        return render(request, 'login.html')
 
 
 def register(request):
@@ -23,11 +35,6 @@ def register(request):
         password = request.POST['password']
         hashedPassword = make_password(password)
         imageLink = request.POST['imageLink']
-        print(name)
-        print(email)
-        print(password)
-        print(hashedPassword)
-        print(imageLink)
 
         x = users(name=name, email=email, passoword=hashedPassword,
                   score=0, imageLink=imageLink, verified=False)
