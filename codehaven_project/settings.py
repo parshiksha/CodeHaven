@@ -75,11 +75,13 @@ WSGI_APPLICATION = 'codehaven_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'codehavendb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgresadmin',
+        'HOST': 'database-2.cfmzrc9hwejz.ap-south-1.rds.amazonaws.com',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
