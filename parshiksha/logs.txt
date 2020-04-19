@@ -1,0 +1,32 @@
+Basic Instructions:
+
+pip install virtualenvwrapper-win
+
+mkvirtualenv psenv
+
+workon psenv
+
+pip install django
+
+python manage.py runserver
+
+python manage.py startapp authen
+
+pip install psycopg2
+
+psql -U postgres
+
+python manage.py makemigrations
+
+python manage.py sqlmigrate authen 0001 
+
+python manage.py migrate
+
+
+
+
+
+
+
+
+psql -h localhost -U postgres -W

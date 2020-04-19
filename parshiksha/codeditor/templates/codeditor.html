@@ -1,0 +1,59 @@
+<!-- templates/home.html -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ACE in Action</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="editor">function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+    }</div>
+<script src="https://pagecdn.io/lib/ace/1.4.8/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/javascript");
+</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <div id="webchat">
+            <script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>
+            <script>
+                WebChat.default.init({
+                    selector: "#webchat",
+                    initPayload: "/get_started",
+                    interval: 1000, // 1000 ms between each message
+                    customData: {"sender": "django"}, // arbitrary custom data. Stay minimal as this will be added to the socket
+                    socketUrl: "http://localhost:5500/",
+                    title: "Connect",
+                    subtitle: "The bot which connects people",
+                    profileAvatar: "https://rasa.com/assets/img/demo/rasa_avatar.png",
+                    showCloseButton: true,
+                    fullScreenMode: false
+                })
+            </script>
+        </div>
+    </body>
+    
+</body>
+</html>

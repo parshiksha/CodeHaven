@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parshiksha | Reset Password</title>
+</head>
+<body>
+    <h2>Reset Passowrd</h2>
+    <form action="forgot" method="POST">
+        {% csrf_token %} 
+        Please Enter Your Email : <input name="email" type="email" /> <br />
+        
+        <input type="submit" />
+      </form>
+    
+</body>
+</html>

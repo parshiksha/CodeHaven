@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +62,9 @@ ROOT_URLCONF = 'parshiksha.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'userprofile', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'userprofile', 'templates'), 
+        os.path.join(BASE_DIR, 'parshiksha', 'templates'), 
+        os.path.join(BASE_DIR, 'codeditor', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,6 +98,21 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS =   {
+        'django.contrib.auth.backend.ModelBackend',
+        'allauth.acoount.auth_backends.AuthenticationBackend',      
+}
+
+SITE_ID =1
+
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '417601145414-47mm8e2d8e31ir9cr0ttqmt65rurqodq.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Wlp_TVwK_aCuIda8zFZcHD-X'
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -115,7 +138,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
+
+SESSION_COOKIE_AGE = 15*60
+
 
 USE_I18N = True
 

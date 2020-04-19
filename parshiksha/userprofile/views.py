@@ -5,8 +5,19 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
+from authen.models import users
 
 
 def index(request):
-    # return HttpResponse("This is user profile. fetched data from DB")
-    return render(request, 'profile.html')
+    print(request.session)
+    if "id" in request.session:
+        userId = request.session['id']
+        results = users.objects.filter(id=userId)
+        
+
+        return render(request, 'profile.html', {
+            'name' : results[0].name,
+            'email': results[0].email
+        })
+    else:
+        return HttpResponse("Please log in to see your profile")

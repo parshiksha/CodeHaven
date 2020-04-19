@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Passoword for {{email}}</title>
+</head>
+<body>
+    <h2>Hey {{email}}   Are you sure about Resetting password</h2>
+    <form action="reset" method="POST">
+
+        {% csrf_token %} 
+        <input name="email" type="hidden" value={{email}} /> <br /><br />
+        Password: 
+        <input name="password1" type="password" /> <br /><br />
+
+        Confirm Passwoord: 
+        <input name="password2" type="password" /><br />
+        <br />
+        <input type="submit" />
+      </form>
+</body>
+</html>
