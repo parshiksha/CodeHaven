@@ -98,10 +98,10 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS =   {
-        'django.contrib.auth.backend.ModelBackend',
-        'allauth.acoount.auth_backends.AuthenticationBackend',      
-}
+# AUTHENTICATION_BACKENDS =   {
+#         'django.contrib.auth.backend.ModelBackend',
+#         'allauth.acoount.auth_backends.AuthenticationBackend',      
+# }
 
 SITE_ID =1
 
@@ -139,6 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
+USE_TZ = True
 
 SESSION_COOKIE_AGE = 15*60
 

@@ -1,10 +1,14 @@
 from django.shortcuts import redirect, render
+from django.utils.timezone import now, timedelta, datetime
 
 # Create your views here.
 from django.http import HttpResponse
 
 from django.contrib.auth.hashers import make_password, check_password
-from .models import users
+from .models import users, ResetPassword
+import uuid
+from django.utils import timezone
+
 
 
 def index(request):
@@ -17,26 +21,24 @@ def login(request):
         password = request.POST['password']
         print(email1 + password)
         results = users.objects.filter(email=email1)
-        # print(results[0].name)
 
-        if(check_password(password, results[0].passoword)):
-            request.session['id'] = results[0].id
-            print(results[0].id)
+        if(len(results) > 0):
+            if(check_password(password, results[0].passoword)):
+                request.session['id'] = results[0].id
+                print(results[0].id)
 
-            # payload = jwt_payload_handler(user)
-            # token = jwt.encode(payload, settings.SECRET_KEY)
-            # user_details = {}
-            # user_details['name'] = "%s %s" % (results[0].name, email1)
-            # user_details['token'] = token
-
-            #print(user_details)
-            # user_logged_in.send(sender=user.__class__, request=request, user=user)
-            # return Response(user_details, status=status.HTTP_200_OK)
-            return redirect('/profile')
+                return redirect('/profile')
+            else:
+                print("password not correct")
+                return render(request, 'login.html', {'message' : 'password or username is not correct, Please try again', 'type': 'alert'})
         else:
-            print("password not correct")
+            return render(request, 'login.html', {'message' : 'are you sure about your email id?', 'type': 'alert'})
+
+        
+
+        
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'message' : 'Hey Welcome Again', 'type' : 'info'})
 
 
 def register(request):
@@ -70,11 +72,20 @@ def logout(request):
 
 def forgot(request):
     if(request.method == 'POST'):
-        link = "http://127.0.0.1:8000/authentication/reset?resetToken=qwertyuiop"
         resetMail = request.POST['email']
-        return HttpResponse("Mail sent to : ===>" + resetMail)
+        
+        resetTokenGG = uuid.uuid4().hex
+
+        link = "http://127.0.0.1:8000/authentication/reset?resetToken="+resetTokenGG
+        dbEntry = ResetPassword(email=resetMail, valid= True, resetToken=resetTokenGG,)
+
+        print(link)
+        dbEntry.save()
+
+        return HttpResponse("Mail sent to : ===>" + resetMail +"and the link is <a href="+ link+">link</a>")
     else:
         return render(request, 'forgot.html')
+
 
 
 
@@ -83,19 +94,28 @@ def reset(request):
         userEmail = request.POST['email']
         pass1 = request.POST['password1']
         pass2 = request.POST['password2']
+
         if(pass1 == pass2):
-            #update password in DB here
+            hashedPassword = make_password(pass1)
+            passwordUpdate = users.objects.filter(email=userEmail).update(passoword=hashedPassword)
+            resetPasswordUpdate = ResetPassword.objects.filter(email=userEmail).update(valid= False)
+            
             return HttpResponse("Password reset Success!! for" + userEmail)
 
 
     else:
-        validatorCode = request.GET['resetToken']
+        validatorCode = request.GET['resetToken']        
+        resetUser = ResetPassword.objects.filter(resetToken=validatorCode, valid= True)
+        if(len(resetUser) > 0):
+            email = resetUser[0].email
+            if(resetUser[0].expiration > timezone.localtime()):
+                return render(request, 'reset.html', {'email' : email})
+            else:
+                return HttpResponse("Hey your 24 hours of password reset time is over now. Have Fun, Keep learning")
+    
+        else:
+            return HttpResponse("Hey Parshiksha User, you don't have a valid reset token, please reset again to get a new mail")
 
-
-        emailOfUser = 'sidsaini1196@gmail.com' #get email from this validation code.
-        return render(request, 'reset.html', {
-            'email' : emailOfUser
-        })
 
 
     
