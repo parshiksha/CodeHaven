@@ -1,13 +1,16 @@
 from django.shortcuts import redirect, render
 from django.utils.timezone import now, timedelta, datetime
 
-# Create your views here.
+
 from django.http import HttpResponse
 
 from django.contrib.auth.hashers import make_password, check_password
 from .models import users, ResetPassword
 import uuid
 from django.utils import timezone
+from django.core.mail import send_mail, EmailMultiAlternatives, EmailMessage
+from parshiksha.settings import EMAIL_HOST_USER
+
 
 
 
@@ -50,12 +53,19 @@ def register(request):
         hashedPassword = make_password(password)
         imageLink = request.POST['imageLink']
 
-        x = users(name=name, email=email, passoword=hashedPassword,
+        results = users.objects.filter(email=email)
+        if(len(results) > 0):
+            return HttpResponse("Hey, User already exist from this email id.")
+        else:
+            x = users(name=name, email=email, passoword=hashedPassword,
                   score=0, imageLink=imageLink, verified=False)
+            x.save()
+            print("User Createdddddd!!!!!!!!!!!!!!1")
+            return render(request, 'login.html', {'message' : 'Hey Welcome to Parshiksha', 'type' : 'info'})
 
-        x.save()
-        print("User Createdddddd!!!!!!!!!!!!!!1")
-        return redirect('/profile')
+        
+
+        
 
     else:
         return render(request, 'register.html')
@@ -78,6 +88,15 @@ def forgot(request):
 
         link = "http://127.0.0.1:8000/authentication/reset?resetToken="+resetTokenGG
         dbEntry = ResetPassword(email=resetMail, valid= True, resetToken=resetTokenGG,)
+        
+        #Email setup
+        # subject, from_email, to = 'Reset your password - Parshiksha', EMAIL_HOST_USER, resetMail
+        # text_content = 'Hey User, You requested to reset your password.'
+        # html_content = 'Please go to this link <a href=' + link+'>Link</a> or <p>' + link+' </p>'
+        # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        # msg.attach_alternative(html_content, "text/html")
+        # msg.send()
+        
 
         print(link)
         dbEntry.save()

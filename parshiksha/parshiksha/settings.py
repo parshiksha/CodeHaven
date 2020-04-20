@@ -157,3 +157,64 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # pg_password : 4d15231c84b84935b8a5a319e3a16e32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#mail credentials 
+#dont do down, please
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'stillhungryindia@gmail.com'
+EMAIL_HOST_PASSWORD = 'stillhungry1196'
