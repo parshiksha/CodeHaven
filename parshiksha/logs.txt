@@ -30,3 +30,5 @@ python manage.py migrate
 
 
 psql -h localhost -U postgres -W
+
+psql --host=codehave-db.cfmzrc9hwejz.ap-south-1.rds.amazonaws.com --port=5432 --username=postgres --password

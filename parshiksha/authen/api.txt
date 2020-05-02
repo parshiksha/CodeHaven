@@ -1,0 +1,66 @@
+
+
+for login :
+ api url :
+		http://0.0.0.0/authentication/login(POST)
+		input: email and username
+		DB:(users) Find user with mail
+		output: if both matches : 200 and authenticated
+			email not found : 404 unauth.
+			password dont match: 400 unauth
+			else: 500 internal server error
+
+
+for registration 
+ api url : 
+		http://0.0.0.0/authenticaiton/register(POST)
+		input: email, password, name, image link
+		db:(users) CREATED USED
+		output: user , created if all field done 200
+			if email alreay exist 409
+		
+
+
+for forget : 
+		
+ api url : 	http://127.0.0.1:8000/authentication/forgot(POST)
+		input: email of user who dont know his password
+		DB:(resetpassword) CREATED random reset token and expiration date
+		output: generated link and email 
+
+for reset :
+
+ api url : 	http://127.0.0.1:8000/authentication/reset?resetToken=randomtokengggggg (get)
+		
+		DB:(resetpassword) CREATED random reset token and expiration date
+		output: generated link and email 
+
+
+ api url :	http://127.0.0.1:8000/authentication/reset (POST)
+		input: password 1 and password2 and mail(you can't direct send this call)
+		DB: (resetpassword, users): Update (password from users to newpass, update resetpassword token to valid : FALSE )  
+		output: if p1=p2 , 400, password unmatched
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

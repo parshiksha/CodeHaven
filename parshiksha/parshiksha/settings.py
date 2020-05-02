@@ -39,11 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
 ]
 
 MIDDLEWARE = [
@@ -157,7 +152,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # pg_password : 4d15231c84b84935b8a5a319e3a16e32
-
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'codeditor/templates/static/'),
+)
 
 
 

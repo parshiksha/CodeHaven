@@ -1,29 +1,93 @@
 <!-- templates/home.html -->
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{name}} | Practice</title>
-    <style type="text/css" media="screen">
-        #editor {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-    </style>
+<title>Code Editor | Practice</title>
+<script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
+<style type="text/css" media="screen">
+
+
+html,body { margin:0; padding:0; height:100%; width:100%; overflow: hidden;}
+
+#editor {
+    height: 50%;
+    width:70%;
+    display:inline-block;
+}
+
+#container {
+    
+  height: 50%;
+    width:auto;
+    white-space : nowrap; 
+    overflow : hidden;
+    position:relative;
+}
+
+
+
+.IandO{
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+/* disable tag matching */
+.ace_editor .ace_marker-layer .ace_bracket { display: none }
+</style>
 </head>
 <body>
-<div id="editor">function foo(items) {
-    var x = "All this is syntax highlighted";
-    return x;
-    }</div>
-<script src="https://pagecdn.io/lib/ace/1.4.8/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.session.setMode("ace/mode/javascript");
+  <h3>Problem Set 3</h3>
+
+  <p>Problem Statement : Sort the given arrey using reverse binary approch</p>
+
+  <div class="IandO">
+    <h4>Input : 
+      <ul>
+        <li>3</li>
+        <li>6</li>
+        <li>9</li>
+      </ul>
+    </h4>
+    <h4>Output : 
+      <ul>
+        <li>1</li>
+        <li>0</li>
+        <li>1</li>
+      </ul>
+    </h4>
+  </div> 
+
+  <div class="chooselang">
+  Choose Your favorite Langugage :   <select id="myLang" onchange="chooseLang()">
+      <option>Python</option>
+      <option>Java</option>
+      <option>C/C++</option>
+      <option>JavaScript</option>
+    </select>
+
+    <br>
+  </div>
+  
+  <div style="width: 100%; height: 20px;">
+
+  </div>
+
+ 
+    <div id='container'>
+        <div id="editor">
+        </div>
+
+    </br>
+
+
+
+
+<script src="{% static 'editor.js' %}">
+
 </script>
+  
 </body>
 </html>
 

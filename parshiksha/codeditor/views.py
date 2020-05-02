@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
 from authen.models import users
 # Create your views here.
 def index(request):
@@ -11,10 +12,10 @@ def index(request):
         
         
 
-        return render(request, 'codeditor.html', {'name' : results[0].name , 'id' :userId })
+        return render(request, 'codeditor.html')
         #return HttpResponse("You're loggin")
 
     else:
-        return HttpResponse("You're logged out. Please log in")
+        return render(request, 'codeditor.html')
     
     
