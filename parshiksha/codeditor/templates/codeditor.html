@@ -6,7 +6,29 @@
 <head>
 <title>Code Editor | Practice</title>
 <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#test").click(function(){
+    $.post('https://api.jdoodle.com/execute',
+    {
+    script : "console.log(2+2+2)",
+    language: "nodejs",
+    versionIndex: "1",
+    clientId: "b43fad100c8478b5e26b2d6aab5c46ff",
+    clientSecret: "105b800cd9390f38f7fd8cd4cf4e02348583b8d816f582f859e5f6e6175ea7f3"
+ },
+    function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+</script>
 <style type="text/css" media="screen">
+
+
 
 
 html,body { margin:0; padding:0; height:100%; width:100%; overflow: hidden;}
@@ -79,10 +101,50 @@ html,body { margin:0; padding:0; height:100%; width:100%; overflow: hidden;}
         <div id="editor">
         </div>
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <button onclick="testCompile()"> Test Code</button>
+        <br>
+        <br>
+        <br>
+        <button> Submit Code</button>
+
     </br>
 
 
+<script>
+  function testCompile(){
+//'https://api.jdoodle.com/execute'
+datagg= {
+    "script" : "console.log(2+2+2)",
+    "language": "nodejs",
+    "versionIndex": "1",
+    "clientId": "b43fad100c8478b5e26b2d6aab5c46ff",
+    "clientSecret": "105b800cd9390f38f7fd8cd4cf4e02348583b8d816f582f859e5f6e6175ea7f3"
+ }
+ console.log('gggg');
+ console.log(datagg);
 
+ fetch(
+           'https://api.jdoodle.com/execute',
+            {   method: 'POST',
+                mode: 'no-cors',
+                // headers: new Headers(
+                //    {"Content-Type": "application/json",
+                //     "Accept":"application/json"}
+                // ),
+                body: JSON.stringify(
+                   datagg
+                )
+             }
+           ).then( response => { console.log(response);})
+            .catch(err => console.log(err))
+ 
+ 
+}
+</script>
 
 <script src="{% static 'editor.js' %}">
 
@@ -90,4 +152,7 @@ html,body { margin:0; padding:0; height:100%; width:100%; overflow: hidden;}
   
 </body>
 </html>
+
+
+
 
