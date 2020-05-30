@@ -24,6 +24,10 @@ def login(request):
         password = request.POST['password']
         print(email1 + password)
         results = users.objects.filter(email=email1)
+        # token = jwt.encode({
+        #     'id': self.pk,
+        #     'exp': int(dt.strftime('%s'))
+        # }, settings.SECRET_KEY, algorithm='HS256')
 
         if(len(results) > 0):
             if(check_password(password, results[0].passoword)):
@@ -117,6 +121,7 @@ def reset(request):
         if(pass1 == pass2):
             hashedPassword = make_password(pass1)
             passwordUpdate = users.objects.filter(email=userEmail).update(passoword=hashedPassword)
+            
             resetPasswordUpdate = ResetPassword.objects.filter(email=userEmail).update(valid= False)
             
             return HttpResponse("Password reset Success!! for" + userEmail)

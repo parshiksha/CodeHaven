@@ -103,11 +103,6 @@ SITE_ID =1
 
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '417601145414-47mm8e2d8e31ir9cr0ttqmt65rurqodq.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Wlp_TVwK_aCuIda8zFZcHD-X'
-
-
-
 
 
 # Password validation
@@ -183,15 +178,6 @@ STATICFILES_DIRS = (
 
 #mail credentials 
 #dont do down, please
-
-
-
-
-
-
-
-
-
 
 
 
