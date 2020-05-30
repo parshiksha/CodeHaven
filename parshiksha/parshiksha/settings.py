@@ -25,7 +25,11 @@ SECRET_KEY = 'o3ya(la-3pnjh88i(yhj48$*f7f5(cc)t)n9#^fcy1pc1uc89b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['3.6.229.225', 'ec2-3-6-229-225.ap-south-1.compute.amazonaws.cnaws.com', '127.0.0.1']
+
+
+
 
 
 # Application definition
@@ -84,15 +88,25 @@ WSGI_APPLICATION = 'parshiksha.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'parshiksha',
+#         'USER': 'postgres',
+#         'PASSWORD': 'qwer5678',
+#         'HOST': 'localhost'
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'parshiksha',
+        'NAME': 'codehavendb',
         'USER': 'postgres',
-        'PASSWORD': 'qwer5678',
-        'HOST': 'localhost'
+        'PASSWORD': 'postgresadmin',
+        'HOST': 'codehave-db.cfmzrc9hwejz.ap-south-1.rds.amazonaws.com'
     }
 }
+
 
 # AUTHENTICATION_BACKENDS =   {
 #         'django.contrib.auth.backend.ModelBackend',
