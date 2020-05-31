@@ -19,9 +19,6 @@ ARG PROJECT=myproject
 ARG PROJECT_DIR=/var/www/${PROJECT}
 RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
-COPY Pipfile Pipfile.lock ./
-RUN pip install -U pipenv
-RUN pipenv install --system
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 # Server
