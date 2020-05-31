@@ -10,4 +10,5 @@ urlpatterns = [
     path('profile/', include('userprofile.urls')),
     path('practice/', include('codeditor.urls')),  
     path('problems/', include('problems.urls')),  
+    path('compiler/', include('compiler.urls')),  
 ]

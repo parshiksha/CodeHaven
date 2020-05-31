@@ -10,6 +10,7 @@ def index(request):
     if "id" in request.session:
         userId = request.session.get('id')
         results = users.objects.filter(id = userId)
+        print(results)
         
         
 
