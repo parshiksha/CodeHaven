@@ -48,3 +48,6 @@ psql --host=codehave-db.cfmzrc9hwejz.ap-south-1.rds.amazonaws.com --port=5432 --
 
 
 
+
+
+source $(pipenv --venv)/bin/activate

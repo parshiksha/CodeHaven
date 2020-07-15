@@ -97,6 +97,8 @@ WSGI_APPLICATION = 'parshiksha.wsgi.application'
 #         'HOST': 'localhost'
 #     }
 # }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -168,51 +170,9 @@ STATICFILES_DIRS = (
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#mail credentials 
-#dont do down, please
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'stillhungryindia@gmail.com'
-EMAIL_HOST_PASSWORD = 'stillhungry1196'
+EMAIL_HOST_PASSWORD = '____Host___Email___Password'
